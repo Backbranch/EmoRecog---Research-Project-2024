@@ -4,7 +4,6 @@ async function analyzeVideo() {
     if (file) {
         const video = document.createElement('video');
         video.src = URL.createObjectURL(file);
-        document.body.appendChild(video); // Add the video element to the body
         video.load();
         video.play();
 
@@ -25,8 +24,11 @@ async function analyzeVideo() {
                 );
                 console.log("Average Emotion Percentages:", emotionAverages);
                 const para = document.createElement("p");
-                const node = document.createTextNode("Average Emotion Percentages:", emotionAverages);
-                
+                const text = `Average Emotion Percentages: ${JSON.stringify(emotionAverages)}`;
+                const textNode = document.createTextNode(text);
+                para.appendChild(textNode);
+                document.body.appendChild(para);
+
                 return;
             }
 

@@ -8,13 +8,16 @@ body{
     margin: 0 auto;
 }
 
-#canvas {
+.canvas {
     z-index: 2; /* Ensure canvas is on top of the video */
     margin-top: -50px;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 
-#canvasPlayer {
+.canvasPlayer {
     z-index: -1;
 }
 
