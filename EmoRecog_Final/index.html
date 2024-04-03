@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Face Detection</title>
+    <script defer src="js\face-api.js"></script>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+
+    <h1>Simple Face Detection</h1>
+
+    <input type="file" id="videoUpload" accept="video/*">
+    <button onclick="analyzeVideo()">Analyze Video</button>
+    <div class="webcamContainer">
+    <video id="canvasPlayer" width="720" height="560" autoplay muted loop="false"></video>
+    <canvas id="canvas" width="720" height="560"></canvas>
+    </div>
+   
+    
+    <script id="__bs_script__">//<![CDATA[
+        (function() {
+          try {
+            var script = document.createElement('script');
+            if ('async') {
+              script.async = true;
+            }
+            script.src = 'http://HOST:3000/browser-sync/browser-sync-client.js?v=3.0.2'.replace("HOST", location.hostname);
+            if (document.body) {
+              document.body.appendChild(script);
+            } else if (document.head) {
+              document.head.appendChild(script);
+            }
+          } catch (e) {
+            console.error("Browsersync: could not append script tag", e);
+          }
+        })()
+      //]]></script>
+
+<script defer src="js/faceSystem.js"></script>
+</body>
+</html>

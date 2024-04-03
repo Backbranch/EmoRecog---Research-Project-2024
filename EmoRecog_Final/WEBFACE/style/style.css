@@ -1,0 +1,57 @@
+body{
+    text-align: center;
+}
+.webcamContainer{
+    position: relative;
+    width: 720px;
+    height: 560px;
+    margin: 0 auto;
+}
+
+.canvas {
+    z-index: 2; /* Ensure canvas is on top of the video */
+    margin-top: -50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+.canvasPlayer {
+    z-index: -1;
+}
+
+#canvasPlayer, #canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+form {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="file"] {
+    margin-bottom: 20px;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
