@@ -1,42 +1,109 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Face Detection</title>
-    <script defer src="js\face-api.js"></script>
-    <link rel="stylesheet" href="style/style.css">
-</head>
-<body>
-
-    <h1>Simple Face Detection</h1>
-
-    <input type="file" id="videoUpload" accept="video/*">
-    <button onclick="analyzeVideo()">Analyze Video</button>
-    <div class="webcamContainer">
-    <video id="canvasPlayer" width="720" height="560" autoplay muted loop="false"></video>
-    <canvas id="canvas" width="720" height="560"></canvas>
+    <script defer src="/WEBFACE/js/face-api.js"></script>
+    <link rel="stylesheet" href="./WEBFACE/style/style.css" />
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Oxygen+Mono&family=Rufina:wght@400;700&display=swap')
+    </style>
+  </head>
+  <body>
+    <div style=" display: flex; width: 100%; justify-content: space-between;">
+    <div style="display:flex; width: min-content; height: 38px; background: #0F0B14; border-radius: 26px; border: 4px #EFE1CD solid; text-align:left;"><svg style="margin-top: -4px; margin-left: -4px;" width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g id="Component 3">
+      <circle id="Ellipse 2" cx="23" cy="23" r="21" stroke="#EFE1CD" stroke-width="4"/>
+      <circle id="Ellipse 3" cx="23" cy="19" r="12" fill="#5F1F39"/>
+      <rect id="Rectangle 7" x="16.1661" y="21" width="14" height="16" transform="rotate(11.4131 16.1661 21)" fill="#5F1F39"/>
+      <path id="Polygon 1" d="M34.9862 20.3098L34.5138 30.8648L24.0138 32.0393L24.4862 21.4844L34.9862 20.3098Z" fill="#5F1F39"/>
+      <path id="Polygon 2" d="M34.5 16L37.5311 25.75H31.4689L34.5 16Z" fill="#5F1F39"/>
+      <circle id="Ellipse 4" cx="26.5" cy="17.5" r="3.25" fill="#5F1F39" stroke="#5F1F39" stroke-width="0.5"/>
+      </g>
+      </svg><div style="width: max-content; height: min-content; text-align: center; color: #EFE1CD; font-size: 22.56px; font-family: Rufina; font-weight: 700; align-self: center; margin-left: 18px; margin-right: 22px;">EmotiRec</div></div>
+      <div style="display:flex; width: max-content; height: 38px; background: #0F0B14; border-radius: 26px; border: 4px #EFE1CD solid; text-align:left;"><div style="width: max-content; height: min-content; text-align: center; color: #EFE1CD; font-size: 22.56px; font-family: Rufina; font-weight: 700; align-self: center; margin-left: 22px; margin-right: 22px;">Our Goals</div></div>
+      <div style="display:flex; width: max-content; height: 38px; background: #0F0B14; border-radius: 26px; border: 4px #EFE1CD solid; text-align:left;"><div style="width: max-content; height: min-content; text-align: center; color: #EFE1CD; font-size: 22.56px; font-family: Rufina; font-weight: 700; align-self: center; margin-left: 22px; margin-right: 22px;">About us</div></div>
+      <div style="display:flex; width: max-content; height: 38px; background: #0F0B14; border-radius: 26px; border: 4px #EFE1CD solid; text-align:left;"><div style="width: max-content; height: min-content; text-align: center; color: #EFE1CD; font-size: 22.56px; font-family: Rufina; font-weight: 700; align-self: center; margin-left: 22px; margin-right: 22px;">Research</div></div>
+      <div style="display:flex; width: max-content; height: 38px; background: #493370; border-radius: 26px; border: 4px #EFE1CD solid; text-align:left;"><div style="width: max-content; height: min-content; text-align: center; color: #EFE1CD; font-size: 22.56px; font-family: Rufina; font-weight: 700; align-self: center; margin-left: 22px; margin-right: 22px;">Try it out</div></div>
     </div>
-   
-    
-    <script id="__bs_script__">//<![CDATA[
-        (function() {
-          try {
-            var script = document.createElement('script');
-            if ('async') {
-              script.async = true;
-            }
-            script.src = 'http://HOST:3000/browser-sync/browser-sync-client.js?v=3.0.2'.replace("HOST", location.hostname);
-            if (document.body) {
-              document.body.appendChild(script);
-            } else if (document.head) {
-              document.head.appendChild(script);
-            }
-          } catch (e) {
-            console.error("Browsersync: could not append script tag", e);
-          }
-        })()
-      //]]></script>
+    <h2>EmotiRec</h2>
+    <div class="webcamContainer" id="videoContainer" style="position:relative;">
+      <video
+        id="canvasPlayer"
+        style="height: 100%; width: 100%;"
+        autoplay
+        muted
+        loop="false"
+      ></video>
+    </div>
+    <style>
+      .file-upload-wrapper {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+      }
 
-<script defer src="js/faceSystem.js"></script>
-</body>
+      .file-upload-wrapper input[type="file"] {
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        cursor: pointer;
+      }
+
+      .file-upload-button {
+        display: flex;
+        width: max-content;
+        height: 38px;
+        background: #493370;
+        border-radius: 26px;
+        border: 4px #EFE1CD solid;
+        color: #EFE1CD;
+        text-align: center;
+        line-height: 38px;
+        display: inline-block;
+        cursor: pointer;
+      }
+    </style>
+    <div style=" display: flex; margin: 0 auto 0 auto; justify-content: space-between; width: 400px; margin-top: 20px">
+    <div style="width: min-content;">
+    <div class="file-upload-wrapper">
+      <input type="file" id="videoUpload" accept="video/*" />
+      <label for="videoUpload" class="file-upload-button"><div style="width: max-content; height: min-content; text-align: center; color: #EFE1CD; font-size: 22.56px; font-family: Rufina; font-weight: 700; align-self: center; margin-left: 22px; margin-right: 22px;">Upload a video</div></label>
+    </div>
+      <svg width="30" height="28" viewBox="0 0 30 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path id="Arrow 2" d="M13 25.3452C13 26.4498 13.8954 27.3452 15 27.3452C16.1046 27.3452 17 26.4498 17 25.3452H13ZM16.4142 0.585802C15.6332 -0.195248 14.3668 -0.195248 13.5858 0.585802L0.857864 13.3137C0.0768156 14.0948 0.0768156 15.3611 0.857864 16.1422C1.63891 16.9232 2.90524 16.9232 3.68629 16.1422L15 4.82844L26.3137 16.1422C27.0948 16.9232 28.3611 16.9232 29.1421 16.1422C29.9232 15.3611 29.9232 14.0948 29.1421 13.3137L16.4142 0.585802ZM17 25.3452V2.00002H13L13 25.3452H17Z" fill="#EFE1CD"/>    
+        </svg>
+        <div style="width: 100%; height: 100%; text-align: center; color: #EFE1CD; font-size: 12px; font-family: Oxygen Mono; font-weight: 400; word-wrap: break-word">Psst! You can upload a short video and find the most likely emotion being expressed!</div>
+      </div>
+    <button style="display:flex; width: max-content; height: 46px; background: #493370; border-radius: 26px; border: 4px #EFE1CD solid; text-align:left; padding: 10px 0 10px 0;" onclick="analyzeVideo()"><div style="width: max-content; height: 38px; text-align: center; color: #EFE1CD; font-size: 22.56px; font-family: Rufina; font-weight: 700; align-self: center; margin-left: 22px; margin-right: 22px; margin-top: 10px;">Analyze!</div></button>
+    </div>
+
+    <script id="__bs_script__">
+      //<![CDATA[
+      (function () {
+        try {
+          var script = document.createElement("script");
+          if ("async") {
+            script.async = true;
+          }
+          script.src =
+            "http://HOST:3000/browser-sync/browser-sync-client.js?v=3.0.2".replace(
+              "HOST",
+              location.hostname,
+            );
+          if (document.body) {
+            document.body.appendChild(script);
+          } else if (document.head) {
+            document.head.appendChild(script);
+          }
+        } catch (e) {
+          console.error("Browsersync: could not append script tag", e);
+        }
+      })();
+      //]]>
+    </script>
+
+    <script defer src="/WEBFACE/js/faceSystem.js"></script>
+  </body>
 </html>
