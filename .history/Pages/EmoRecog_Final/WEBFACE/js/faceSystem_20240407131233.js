@@ -26,12 +26,17 @@ async function analyzeVideo() {
           ]),
         );
         console.log("Average Emotion Percentages:", emotionAverages);
+        console.log(analyzed);
         const para = document.createElement("p");
         const text = `Average Emotion Percentages: ${JSON.stringify(emotionAverages)}`;
         const textNode = document.createTextNode(text);
         para.appendChild(textNode);
+        if (analyzed == 1) {
+        document.body.removeChild(para);
+        const analyzed = 0;
+        }
         document.body.appendChild(para);
-        para.style = "text-align: center; color: #EFE1CD; font-size: 12px; font-family: Oxygen Mono; font-weight: 400;";
+        para.style = "text-align: center; color: #EFE1CD; font-size: 12px; font-family: Oxygen Mono; font-weight: 400;"
         const analyzed = 1;
         return;
       }

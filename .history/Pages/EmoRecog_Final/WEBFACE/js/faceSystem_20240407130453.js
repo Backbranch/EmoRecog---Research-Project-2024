@@ -1,5 +1,4 @@
 console.log("loading");
-const analyzed = 0;
 async function analyzeVideo() {
   const videoUpload = document.getElementById("videoUpload");
   const file = videoUpload.files[0];
@@ -15,7 +14,7 @@ async function analyzeVideo() {
 
     let emotionSums = {};
     let frameCount = 0;
-    
+    const i = 0
     const analyze = async () => {
       if (video.currentTime >= video.duration) {
         console.log("End of video");
@@ -31,8 +30,8 @@ async function analyzeVideo() {
         const textNode = document.createTextNode(text);
         para.appendChild(textNode);
         document.body.appendChild(para);
-        para.style = "text-align: center; color: #EFE1CD; font-size: 12px; font-family: Oxygen Mono; font-weight: 400;";
-        const analyzed = 1;
+        para.style = "text-align: center; color: #EFE1CD; font-size: 12px; font-family: Oxygen Mono; font-weight: 400;"
+        const i = 1
         return;
       }
 

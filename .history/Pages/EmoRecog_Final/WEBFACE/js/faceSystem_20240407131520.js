@@ -1,5 +1,4 @@
 console.log("loading");
-const analyzed = 0;
 async function analyzeVideo() {
   const videoUpload = document.getElementById("videoUpload");
   const file = videoUpload.files[0];
@@ -32,7 +31,6 @@ async function analyzeVideo() {
         para.appendChild(textNode);
         document.body.appendChild(para);
         para.style = "text-align: center; color: #EFE1CD; font-size: 12px; font-family: Oxygen Mono; font-weight: 400;";
-        const analyzed = 1;
         return;
       }
 

@@ -1,0 +1,14 @@
+body{
+  text-align: center;
+  position: relative;
+  background: #0F0B14;
+  overflow:hidden;
+}
+
+h2{
+font-family: 'Rufina', serif;
+font-weight: 700;
+font-size: 64px;
+color: var(--text);
+margin: 23px 0 23px;
+}

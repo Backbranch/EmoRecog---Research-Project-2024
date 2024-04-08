@@ -1,0 +1,22 @@
+:root{
+  --text: #efe1cd;
+  --background: #0f0b14;
+  --primary: #493370;
+  --secondary: #331b41;
+  --accent: #5f1f39;
+}
+
+body{
+  text-align: center;
+  position: relative;
+  background: #0F0B14;
+  overflow:hidden;
+}
+
+h2{
+font-family: 'Rufina', serif;
+font-weight: 700;
+font-size: 64px;
+color: var(--text);
+margin: 23px 0 23px;
+}
