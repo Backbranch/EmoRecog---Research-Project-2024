@@ -7,10 +7,19 @@
 }
 
 body{
+  display: flex;
+  align-content: center;
   text-align: center;
   position: relative;
   background: #0F0B14;
   overflow:hidden;
+}
+
+h1{
+  font-family: 'Rufina', serif;
+  font-weight: 700;
+  font-size: 64pt;
+  color: var(--text);
 }
 
 h2{
@@ -29,12 +38,4 @@ p{
   font-weight: 400;
   word-wrap: break-word;
   width: 640px;
-  margin: 0 auto 0 auto;
-}
-
-h1{
-  font-family: 'Rufina', serif;
-  font-weight: 700;
-  font-size: 64pt;
-  color: var(--text);
 }

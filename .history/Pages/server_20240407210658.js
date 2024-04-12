@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = 80;
 
 // Get IP address from command line arguments
 const ipAddress = process.argv[2] || "localhost";

@@ -13,28 +13,17 @@ body{
   overflow:hidden;
 }
 
+h1{
+  font-family: 'Rufina', serif;
+  font-weight: 700;
+  font-size: 64pt;
+  color: var(--text);
+}
+
 h2{
 font-family: 'Rufina', serif;
 font-weight: 700;
 font-size: 64px;
 color: var(--text);
 margin: 23px 0 23px;
-}
-
-p{
-  display: block;
-  color: #EFE1CD;
-  font-size: 18px;
-  font-family: Oxygen Mono;
-  font-weight: 400;
-  word-wrap: break-word;
-  width: 640px;
-  margin: 0 auto 0 auto;
-}
-
-h1{
-  font-family: 'Rufina', serif;
-  font-weight: 700;
-  font-size: 64pt;
-  color: var(--text);
 }
