@@ -6,6 +6,26 @@
   --accent: #5f1f39;
 }
 
+.flipCamera{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 50px;
+    bottom: 50px;
+    z-index: 10;
+    height:50px;
+    width:50px;
+    background: #0F0B14;
+    border-radius: 50%;
+    border: 4px #EFE1CD solid;
+}
+
+.flipIcon{
+    height: 35px;
+    width: 35px;
+}
+
 body{
     text-align: center;
     position: relative;

@@ -1,5 +1,30 @@
 console.log("loading");
 const analyzed = 0;
+let videoStream;
+  let video;
+  let currentDeviceIdIndex = 0;
+  let devices = [];
+async function getAvailableCameras() {
+  const devicesList = await navigator.mediaDevices.enumerateDevices();
+  devices = devicesList.filter(device => device.kind === 'videoinput');
+}
+
+async function startCamera(deviceId) {
+  if (videoStream) {
+    videoStream.getTracks().forEach(track => track.stop());
+  }
+
+  videoStream = await navigator.mediaDevices.getUserMedia({
+    video: { deviceId: { exact: deviceId } },
+  });
+  video.srcObject = videoStream;
+}
+
+async function flipCamera() {
+  currentDeviceIdIndex = (currentDeviceIdIndex + 1) % devices.length;
+  await startCamera(devices[currentDeviceIdIndex].deviceId);
+}
+
 async function analyzeVideo() {
   const videoUpload = document.getElementById("videoUpload");
   const file = videoUpload.files[0];
@@ -55,6 +80,12 @@ async function analyzeVideo() {
 }
 
 async function start() {
+  await getAvailableCameras();
+  if (devices.length > 0) {
+    video = document.getElementById("canvasPlayer");
+    await startCamera(devices[currentDeviceIdIndex].deviceId);
+  }
+
   await faceapi.nets.tinyFaceDetector.loadFromUri("./WEBFACE/models");
   await faceapi.nets.faceLandmark68Net.loadFromUri("./WEBFACE/models");
   await faceapi.nets.faceRecognitionNet.loadFromUri("./WEBFACE/models");
@@ -66,12 +97,6 @@ async function start() {
     return age;
   }
 
-  // Access user's webcam
-  const video = document.getElementById("canvasPlayer");
-  navigator.mediaDevices.getUserMedia({ video: {} }).then((stream) => {
-    video.srcObject = stream;
-  });
-
   video.addEventListener("play", async () => {
     const canvas = faceapi.createCanvasFromMedia(video);
     const videoContainer = document.getElementById("videoContainer");
@@ -81,8 +106,6 @@ async function start() {
       height: video.videoHeight,
     };
 
-    console.log("grant is coool",displaySize);
-    
     faceapi.matchDimensions(canvas, displaySize);
     canvas.style.position = "absolute";
     canvas.style.top = "0";
@@ -90,14 +113,8 @@ async function start() {
     canvas.style.width = "100%";
     canvas.style.height = "100%";
     const canvasRect = canvas.getBoundingClientRect();
-    console.log("teststestest", canvasRect);
 
-    //canvas.removeAttribute("width");
-    //canvas.removeAttribute("height");
-    // Clear the canvas once
-    canvas
-      .getContext("2d")
-      .clearRect(0, 0, displaySize.width, displaySize.height);
+    canvas.getContext("2d").clearRect(0, 0, displaySize.width, displaySize.height);
 
     setInterval(async () => {
       detections = await faceapi
@@ -112,16 +129,14 @@ async function start() {
       };
 
       const resizedDetections = faceapi.resizeResults(detections, renderedSize);
-      console.log(detections)
 
-      // Clear the canvas
-      canvas
-        .getContext("2d")
-        .clearRect(0, 0, displaySize.width, displaySize.height);
+      canvas.getContext("2d").clearRect(0, 0, displaySize.width, displaySize.height);
 
       faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
     }, 25);
   });
 }
+
+document.querySelector('.flipCamera').addEventListener('click', flipCamera);
 
 start();
